@@ -1,0 +1,28 @@
+import requests
+import random
+
+# Send an HTTP request to the website that lists the proxies
+url = 'https://www.us-proxy.org/'
+response = requests.get(url)
+
+# Get the list of proxies from the response
+proxies = response.text.split('\n')
+
+# Remove any empty entries in the list
+proxies = [proxy for proxy in proxies if proxy]
+
+# Randomly select a proxy from the list
+proxy = random.choice(proxies)
+
+# Set the proxy for the HTTP request
+proxies = {
+  'http': f'http://{proxy}',
+  'https': f'https://{proxy}'
+}
+
+# Send an HTTP request to Google.com using the selected proxy
+response = requests.get('http://www.google.com', proxies=proxies)
+
+# Print the status code of the response
+print(response.status_code)
+print(proxies)
