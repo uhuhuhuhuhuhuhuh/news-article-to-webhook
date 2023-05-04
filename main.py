@@ -6,7 +6,7 @@ import webserver
 from bs4 import BeautifulSoup
 # Send an HTTP request to the website that lists the proxies
 def proxies():
-  urltoproxies = 'https://www.proxy-list.download/api/v1/get?type=https'
+  urltoproxies = 'https://www.proxy-list.download/api/v1/get?type=https&anon=anonymous'
   response = requests.get(urltoproxies)
 # Get the list of proxies from the response
   proxies = response.text.split('\n')
